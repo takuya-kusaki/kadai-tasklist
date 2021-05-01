@@ -5,7 +5,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: dbuser
   password: dbpass
-  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
