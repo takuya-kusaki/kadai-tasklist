@@ -1,4 +1,25 @@
-<a class="navbar-brand" href="/">タスク一覧</a>
-<h1>id: <%= @task.id %> のタスク編集ページ</h1>
-
-<%= render "form", task: @task %>
+<% if logged_in? %>
+  <a class="navbar-brand" href="/">Toppage</a>
+    <h1>id: <%= @task.id %> の編集ページ</h1>
+      <%= form_with(model: @task, local: true) do |f| %>
+        <div class="row">
+          <div class="col-5">
+            <div class="form-group">
+              <%= f.label :content, 'タスク' %>
+              <%= f.text_area :content, class: 'form-control', rows:3 %>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="form-group">
+              <%= f.label :status, 'ステータス' %>
+              <%= f.text_area :status, class: 'form-control',rows:3 %>
+            </div>
+          </div>
+            <div class="col-2 align-self-end">
+              <div class="form-group">
+                <%= f.submit '編集', class: 'btn btn-primary' %>
+              </div>
+            </div>
+        </div>
+  <% end %>
+<% end %>

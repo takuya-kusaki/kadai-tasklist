@@ -1,4 +1,26 @@
-<h1>タスク一覧</h1>
+<% if logged_in? %>
+  <%= link_to 'ログアウト', logout_path, method: :delete %>
+  <%= form_with(model: @task, local: true) do |f| %>
+    <div class="row">
+      <div class="col-5">
+        <div class="form-group">
+          <%= f.label :タスク %>
+          <%= f.text_area :content, class: 'form-control', rows:3 %>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-group">
+          <%= f.label :ステータス %>
+          <%= f.text_area :status, class: 'form-control',rows:3 %>
+        </div>
+      </div>
+      <div class="col-2 align-self-end">
+        <div class="form-group">
+          <%= f.submit '新規作成', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
 <table class="table table-striped">
   <thead>
@@ -11,12 +33,22 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= link_to task.id, task %></td>
+        <td><%= task.id %></td>
         <td><%= task.content %></td>
         <td><%= task.status %></td>
+        <td align="right"><%= link_to '編集', edit_task_path(task.id), class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to "Delete", task, method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: 'btn btn-danger btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to "新規タスクの投稿", new_task_path, class: "btn btn-primary" %>
+<% else %>
+<div class="center jumbotron">
+  <div class="text-center">
+    <h1>タスクリスト</h1>
+    <%= link_to 'ユーザ登録', signup_path, class: 'btn btn-lg btn-primary' %>
+    <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary' %>
+  </div>
+</div>
+<% end %>
