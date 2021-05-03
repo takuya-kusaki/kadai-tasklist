@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
     
-    include SessionsHelper
+  include SessionsHelper
     
-    private
+  private
 
   def require_user_logged_in
     unless logged_in?

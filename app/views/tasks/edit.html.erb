@@ -2,6 +2,7 @@
   <a class="navbar-brand" href="/">Toppage</a>
     <h1>id: <%= @task.id %> の編集ページ</h1>
       <%= form_with(model: @task, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
         <div class="row">
           <div class="col-5">
             <div class="form-group">
