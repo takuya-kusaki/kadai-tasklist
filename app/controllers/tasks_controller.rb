@@ -21,7 +21,10 @@ class TasksController < ApplicationController
   end
   
   def edit
-      @task = current_user.tasks.find(params[:id])
+      @task = current_user.tasks.find_by(id: params[:id])
+      if @task==nil
+        redirect_to "/"
+      end
   end
   
   def update
