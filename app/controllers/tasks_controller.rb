@@ -35,8 +35,8 @@ class TasksController < ApplicationController
       redirect_to "/"
     else
       @tasks = current_user
-      flash.now[:danger] = '更新されませんでした'
-      render :edit
+      flash[:danger] = '更新されませんでした'
+      redirect_to edit_task_path(params[:id])
     end
   end
   
