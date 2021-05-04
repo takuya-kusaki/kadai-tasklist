@@ -1,8 +1,22 @@
 class TasksController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :create, :edit, :update]
+  before_action :require_user_logged_in, only: [:new, :show, :index, :create, :edit, :update]
   before_action :correct_user, only: [:destroy]
   
   def index
+    if logged_in?
+      @task = current_user.tasks.build  # form_with 用
+      @tasks = current_user.tasks.order(id: :desc)
+    end
+  end
+  
+  def show
+    @task = current_user.tasks.find_by(id: params[:id])
+      if @task==nil
+        redirect_to "/"
+      end
+  end
+  
+  def new
     if logged_in?
       @task = current_user.tasks.build  # form_with 用
       @tasks = current_user.tasks.order(id: :desc)
@@ -41,8 +55,9 @@ class TasksController < ApplicationController
   end
   
   def destroy
+    @task = Task.find(params[:id])
     @task.destroy
-    flash[:success] = 'メッセージを削除しました。'
+    flash[:success] = '削除されました。'
     redirect_back(fallback_location: root_path)
   end
 
