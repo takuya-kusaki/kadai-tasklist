@@ -1,34 +1,5 @@
-<% if logged_in? %>
 <h1><a class="navbar-brand" href="/">Tasklist</a></h1>
-  <%= link_to 'ログアウト', logout_path, method: :delete %>
-  <%= form_with(model: @task, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-    <div class="row">
-      <div class="col-5">
-        <div class="form-group">
-          <%= f.label :タスク %>
-          <%= f.text_area :content, class: 'form-control', rows:3 %>
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="form-group">
-          <%= f.label :ステータス %>
-          <%= f.text_area :status, class: 'form-control',rows:3 %>
-        </div>
-      </div>
-      <div class="col-2 align-self-end">
-        <div class="form-group">
-          <%= f.submit '新規作成', class: 'btn btn-primary' %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>タスクリスト</h1>
-    <%= link_to 'ユーザ登録', signup_path, class: 'btn btn-lg btn-primary' %>
-    <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary' %>
-  </div>
-</div>
-<% end %>
+<p>ログイン完了ユーザ: <%= current_user.name %></p>
+
+
+<%= render "form", task: @task %>
