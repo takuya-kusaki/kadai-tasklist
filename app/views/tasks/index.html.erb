@@ -16,9 +16,9 @@
         <td><%= task.status %></td>
       </tr>
     <% end %>
-    <%= link_to "新規タスクの投稿", new_task_path, class: "btn btn-primary" %>
   </tbody>
 </table>
+<%= link_to "新規タスクの投稿", new_task_path, class: "btn btn-primary" %>
 
 <% else %>
 <div class="center jumbotron">
