@@ -1,6 +1,6 @@
 <% if logged_in? %>
   <%= link_to 'ログアウト', logout_path, method: :delete %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <p>ログインユーザ: <%= current_user.name %></p>
 <table class="table table-striped">
   <thead>
     <tr>
